@@ -62,30 +62,32 @@ class qtype_blocklymoodle extends question_type {
             $options->id = $DB->insert_record('qtype_blocklymoodle_options', $options);
         }
 
-        $options->responseformat = $formdata->responseformat;
-        $options->responserequired = $formdata->responserequired;
-        $options->responsefieldlines = $formdata->responsefieldlines;
-        $options->attachments = $formdata->attachments;
-        $options->attachmentsrequired = $formdata->attachmentsrequired;
+        $options->codelanguage = $formdata->codelanguage;
+//        $options->responseformat = $formdata->responseformat;
+//        $options->responserequired = $formdata->responserequired;
+//        $options->responsefieldlines = $formdata->responsefieldlines;
+//        $options->attachments = $formdata->attachments;
+//        $options->attachmentsrequired = $formdata->attachmentsrequired;
         $options->graderinfo = $this->import_or_save_files($formdata->graderinfo,
                 $context, 'qtype_blocklymoodle', 'graderinfo', $formdata->id);
         $options->graderinfoformat = $formdata->graderinfo['format'];
-        $options->responsetemplate = $formdata->responsetemplate['text'];
-        $options->responsetemplateformat = $formdata->responsetemplate['format'];
+//        $options->responsetemplate = $formdata->responsetemplate['text'];
+//        $options->responsetemplateformat = $formdata->responsetemplate['format'];
         $DB->update_record('qtype_blocklymoodle_options', $options);
     }
 
     protected function initialise_question_instance(question_definition $question, $questiondata) {
         parent::initialise_question_instance($question, $questiondata);
-        $question->responseformat = $questiondata->options->responseformat;
-        $question->responserequired = $questiondata->options->responserequired;
-        $question->responsefieldlines = $questiondata->options->responsefieldlines;
-        $question->attachments = $questiondata->options->attachments;
-        $question->attachmentsrequired = $questiondata->options->attachmentsrequired;
+//        $question->responseformat = $questiondata->options->responseformat;
+//        $question->responserequired = $questiondata->options->responserequired;
+//        $question->responsefieldlines = $questiondata->options->responsefieldlines;
+//        $question->attachments = $questiondata->options->attachments;
+//        $question->attachmentsrequired = $questiondata->options->attachmentsrequired;
         $question->graderinfo = $questiondata->options->graderinfo;
         $question->graderinfoformat = $questiondata->options->graderinfoformat;
-        $question->responsetemplate = $questiondata->options->responsetemplate;
-        $question->responsetemplateformat = $questiondata->options->responsetemplateformat;
+//        $question->responsetemplate = $questiondata->options->responsetemplate;
+//        $question->responsetemplateformat = $questiondata->options->responsetemplateformat;
+        $question->codelanguage = $questiondata->options->codelanguage;
     }
 
     public function delete_question($questionid, $contextid) {

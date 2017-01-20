@@ -16,7 +16,7 @@
 
 /**
  * @package    qtype
- * @subpackage blacklymoodle
+ * @subpackage blocklymoodle
  * @copyright  2011 David Mudrak <david@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Short answer question type conversion handler
  */
-class moodle1_qtype_blacklymoodle_handler extends moodle1_qtype_handler {
+class moodle1_qtype_blocklymoodle_handler extends moodle1_qtype_handler {
 
     /**
      * @return array
@@ -36,11 +36,11 @@ class moodle1_qtype_blacklymoodle_handler extends moodle1_qtype_handler {
     }
 
     /**
-     * Appends the blacklymoodle specific information to the question
+     * Appends the blocklymoodle specific information to the question
      */
     public function process_question(array $data, array $raw) {
         // Data added on the upgrade step 2011031000.
-        $this->write_xml('blacklymoodle', array(
+        $this->write_xml('blocklymoodle', array(
             'id'                     => $this->converter->get_nextid(),
             'responseformat'         => 'editor',
             'responserequired'       => 1,
@@ -51,6 +51,6 @@ class moodle1_qtype_blacklymoodle_handler extends moodle1_qtype_handler {
             'graderinfoformat'       => FORMAT_HTML,
             'responsetemplate'       => '',
             'responsetemplateformat' => FORMAT_HTML
-        ), array('/blacklymoodle/id'));
+        ), array('/blocklymoodle/id'));
     }
 }

@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_blocklymoodle';
-$plugin->version   = 2017013000;
+$plugin->version   = 2017011807;
 
 $plugin->requires  = 2016112900;
 

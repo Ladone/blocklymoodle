@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * blocklymoodle question type upgrade code.
+ * Blocklymoodle question type upgrade code.
  *
  * @package    qtype
  * @subpackage blocklymoodle
@@ -47,5 +47,9 @@ function xmldb_qtype_blocklymoodle_upgrade($oldversion) {
     // Automatically generated Moodle v3.2.0 release upgrade line.
     // Put any upgrade step following this.
 
+    /// Add a new column newcol to the mdl_blocklymoodle_options
+    if ($oldversion < 2017011806) {
+
+    }
     return true;
 }

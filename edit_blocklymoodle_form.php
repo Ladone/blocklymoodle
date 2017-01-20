@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 
 
 /**
- * blocklymoodle question type editing form.
+ * Blocklymoodle question type editing form.
  *
  * @copyright  2007 Jamie Pratt me@jamiep.org
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -38,37 +38,49 @@ class qtype_blocklymoodle_edit_form extends question_edit_form {
     protected function definition_inner($mform) {
         $qtype = question_bank::get_qtype('blocklymoodle');
 
-        $mform->addElement('header', 'responseoptions', get_string('responseoptions', 'qtype_blocklymoodle'));
-        $mform->setExpanded('responseoptions');
+        $languages = array(
+            'js'   => 'JavaScript',
+            'py'   => 'Python',
+            'php'  => 'PHP',
+            'lua'  => 'Lua',
+            'dart' => 'Dart',
+            'xml'  => 'XML',
+        );
 
-        $mform->addElement('select', 'responseformat',
-                get_string('responseformat', 'qtype_blocklymoodle'), $qtype->response_formats());
-        $mform->setDefault('responseformat', 'editor');
+        //$mform->addElement('header', 'codelanguage', get_string('codelanguage', 'qtype_blocklymoodle'));
+        $mform->addElement('select', 'codelanguage', get_string('codelanguage', 'qtype_blocklymoodle'), $languages);
 
-        $mform->addElement('select', 'responserequired',
-                get_string('responserequired', 'qtype_blocklymoodle'), $qtype->response_required_options());
-        $mform->setDefault('responserequired', 1);
-        $mform->disabledIf('responserequired', 'responseformat', 'eq', 'noinline');
-
-        $mform->addElement('select', 'responsefieldlines',
-                get_string('responsefieldlines', 'qtype_blocklymoodle'), $qtype->response_sizes());
-        $mform->setDefault('responsefieldlines', 15);
-        $mform->disabledIf('responsefieldlines', 'responseformat', 'eq', 'noinline');
-
-        $mform->addElement('select', 'attachments',
-                get_string('allowattachments', 'qtype_blocklymoodle'), $qtype->attachment_options());
-        $mform->setDefault('attachments', 0);
-
-        $mform->addElement('select', 'attachmentsrequired',
-                get_string('attachmentsrequired', 'qtype_blocklymoodle'), $qtype->attachments_required_options());
-        $mform->setDefault('attachmentsrequired', 0);
-        $mform->addHelpButton('attachmentsrequired', 'attachmentsrequired', 'qtype_blocklymoodle');
-        $mform->disabledIf('attachmentsrequired', 'attachments', 'eq', 0);
-
-        $mform->addElement('header', 'responsetemplateheader', get_string('responsetemplateheader', 'qtype_blocklymoodle'));
-        $mform->addElement('editor', 'responsetemplate', get_string('responsetemplate', 'qtype_blocklymoodle'),
-                array('rows' => 10),  array_merge($this->editoroptions, array('maxfiles' => 0)));
-        $mform->addHelpButton('responsetemplate', 'responsetemplate', 'qtype_blocklymoodle');
+//        $mform->addElement('header', 'responseoptions', get_string('responseoptions', 'qtype_blocklymoodle'));
+//        $mform->setExpanded('responseoptions');
+//
+//        $mform->addElement('select', 'responseformat',
+//                get_string('responseformat', 'qtype_blocklymoodle'), $qtype->response_formats());
+//        $mform->setDefault('responseformat', 'editor');
+//
+//        $mform->addElement('select', 'responserequired',
+//                get_string('responserequired', 'qtype_blocklymoodle'), $qtype->response_required_options());
+//        $mform->setDefault('responserequired', 1);
+//        $mform->disabledIf('responserequired', 'responseformat', 'eq', 'noinline');
+//
+//        $mform->addElement('select', 'responsefieldlines',
+//                get_string('responsefieldlines', 'qtype_blocklymoodle'), $qtype->response_sizes());
+//        $mform->setDefault('responsefieldlines', 15);
+//        $mform->disabledIf('responsefieldlines', 'responseformat', 'eq', 'noinline');
+//
+//        $mform->addElement('select', 'attachments',
+//                get_string('allowattachments', 'qtype_blocklymoodle'), $qtype->attachment_options());
+//        $mform->setDefault('attachments', 0);
+//
+//        $mform->addElement('select', 'attachmentsrequired',
+//                get_string('attachmentsrequired', 'qtype_blocklymoodle'), $qtype->attachments_required_options());
+//        $mform->setDefault('attachmentsrequired', 0);
+//        $mform->addHelpButton('attachmentsrequired', 'attachmentsrequired', 'qtype_blocklymoodle');
+//        $mform->disabledIf('attachmentsrequired', 'attachments', 'eq', 0);
+//
+//        $mform->addElement('header', 'responsetemplateheader', get_string('responsetemplateheader', 'qtype_blocklymoodle'));
+//        $mform->addElement('editor', 'responsetemplate', get_string('responsetemplate', 'qtype_blocklymoodle'),
+//                array('rows' => 10),  array_merge($this->editoroptions, array('maxfiles' => 0)));
+//        $mform->addHelpButton('responsetemplate', 'responsetemplate', 'qtype_blocklymoodle');
 
         $mform->addElement('header', 'graderinfoheader', get_string('graderinfoheader', 'qtype_blocklymoodle'));
         $mform->setExpanded('graderinfoheader');
@@ -83,11 +95,12 @@ class qtype_blocklymoodle_edit_form extends question_edit_form {
             return $question;
         }
 
-        $question->responseformat = $question->options->responseformat;
-        $question->responserequired = $question->options->responserequired;
-        $question->responsefieldlines = $question->options->responsefieldlines;
-        $question->attachments = $question->options->attachments;
-        $question->attachmentsrequired = $question->options->attachmentsrequired;
+          $question->codelanguage = $question->options->codelanguage;
+//        $question->responseformat = $question->options->responseformat;
+//        $question->responserequired = $question->options->responserequired;
+//          $question->responsefieldlines = $question->options->responsefieldlines;
+//        $question->attachments = $question->options->attachments;
+//        $question->attachmentsrequired = $question->options->attachmentsrequired;
 
         $draftid = file_get_submitted_draft_itemid('graderinfo');
         $question->graderinfo = array();
@@ -100,13 +113,15 @@ class qtype_blocklymoodle_edit_form extends question_edit_form {
             $this->fileoptions, // options
             $question->options->graderinfo // text.
         );
+
         $question->graderinfo['format'] = $question->options->graderinfoformat;
         $question->graderinfo['itemid'] = $draftid;
+        $question->codelanguage;
 
-        $question->responsetemplate = array(
-            'text' => $question->options->responsetemplate,
-            'format' => $question->options->responsetemplateformat,
-        );
+//        $question->responsetemplate = array(
+//            'text' => $question->options->responsetemplate,
+//            'format' => $question->options->responsetemplateformat,
+//        );
 
         return $question;
     }
@@ -116,7 +131,7 @@ class qtype_blocklymoodle_edit_form extends question_edit_form {
 
         // Don't allow both 'no inline response' and 'no attachments' to be selected,
         // as these options would result in there being no input requested from the user.
-        if ($fromform['responseformat'] == 'noinline' && !$fromform['attachments']) {
+        /*if ($fromform['responseformat'] == 'noinline' && !$fromform['attachments']) {
             $errors['attachments'] = get_string('mustattach', 'qtype_blocklymoodle');
         }
 
@@ -130,7 +145,7 @@ class qtype_blocklymoodle_edit_form extends question_edit_form {
         // create a condition that it's impossible for the student to meet.
         if ($fromform['attachments'] != -1 && $fromform['attachments'] < $fromform['attachmentsrequired'] ) {
             $errors['attachmentsrequired']  = get_string('mustrequirefewer', 'qtype_blocklymoodle');
-        }
+        }*/
 
         return $errors;
     }

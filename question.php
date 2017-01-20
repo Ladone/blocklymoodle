@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * blocklymoodle question definition class.
+ * Blocklymoodle question definition class.
  *
  * @package    qtype
  * @subpackage blocklymoodle
@@ -37,7 +37,7 @@ require_once($CFG->dirroot . '/question/type/questionbase.php');
 class qtype_blocklymoodle_question extends question_with_responses {
 
     public $responseformat;
-
+    public $codelanguage;
     /** @var int Indicates whether an inline response is required ('0') or optional ('1')  */
     public $responserequired;
 
