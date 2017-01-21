@@ -20,6 +20,7 @@
  * @package    qtype
  * @subpackage blocklymoodle
  * @copyright  2007 Jamie Pratt me@jamiep.org
+ * @copyright  2017 Pototskiy Vlad (pototskiyvl@gmail.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -47,41 +48,7 @@ class qtype_blocklymoodle_edit_form extends question_edit_form {
             'xml'  => 'XML',
         );
 
-        //$mform->addElement('header', 'codelanguage', get_string('codelanguage', 'qtype_blocklymoodle'));
         $mform->addElement('select', 'codelanguage', get_string('codelanguage', 'qtype_blocklymoodle'), $languages);
-
-//        $mform->addElement('header', 'responseoptions', get_string('responseoptions', 'qtype_blocklymoodle'));
-//        $mform->setExpanded('responseoptions');
-//
-//        $mform->addElement('select', 'responseformat',
-//                get_string('responseformat', 'qtype_blocklymoodle'), $qtype->response_formats());
-//        $mform->setDefault('responseformat', 'editor');
-//
-//        $mform->addElement('select', 'responserequired',
-//                get_string('responserequired', 'qtype_blocklymoodle'), $qtype->response_required_options());
-//        $mform->setDefault('responserequired', 1);
-//        $mform->disabledIf('responserequired', 'responseformat', 'eq', 'noinline');
-//
-//        $mform->addElement('select', 'responsefieldlines',
-//                get_string('responsefieldlines', 'qtype_blocklymoodle'), $qtype->response_sizes());
-//        $mform->setDefault('responsefieldlines', 15);
-//        $mform->disabledIf('responsefieldlines', 'responseformat', 'eq', 'noinline');
-//
-//        $mform->addElement('select', 'attachments',
-//                get_string('allowattachments', 'qtype_blocklymoodle'), $qtype->attachment_options());
-//        $mform->setDefault('attachments', 0);
-//
-//        $mform->addElement('select', 'attachmentsrequired',
-//                get_string('attachmentsrequired', 'qtype_blocklymoodle'), $qtype->attachments_required_options());
-//        $mform->setDefault('attachmentsrequired', 0);
-//        $mform->addHelpButton('attachmentsrequired', 'attachmentsrequired', 'qtype_blocklymoodle');
-//        $mform->disabledIf('attachmentsrequired', 'attachments', 'eq', 0);
-//
-//        $mform->addElement('header', 'responsetemplateheader', get_string('responsetemplateheader', 'qtype_blocklymoodle'));
-//        $mform->addElement('editor', 'responsetemplate', get_string('responsetemplate', 'qtype_blocklymoodle'),
-//                array('rows' => 10),  array_merge($this->editoroptions, array('maxfiles' => 0)));
-//        $mform->addHelpButton('responsetemplate', 'responsetemplate', 'qtype_blocklymoodle');
-
         $mform->addElement('header', 'graderinfoheader', get_string('graderinfoheader', 'qtype_blocklymoodle'));
         $mform->setExpanded('graderinfoheader');
         $mform->addElement('editor', 'graderinfo', get_string('graderinfo', 'qtype_blocklymoodle'),
@@ -95,12 +62,7 @@ class qtype_blocklymoodle_edit_form extends question_edit_form {
             return $question;
         }
 
-          $question->codelanguage = $question->options->codelanguage;
-//        $question->responseformat = $question->options->responseformat;
-//        $question->responserequired = $question->options->responserequired;
-//          $question->responsefieldlines = $question->options->responsefieldlines;
-//        $question->attachments = $question->options->attachments;
-//        $question->attachmentsrequired = $question->options->attachmentsrequired;
+        $question->codelanguage = $question->options->codelanguage;
 
         $draftid = file_get_submitted_draft_itemid('graderinfo');
         $question->graderinfo = array();
@@ -117,11 +79,6 @@ class qtype_blocklymoodle_edit_form extends question_edit_form {
         $question->graderinfo['format'] = $question->options->graderinfoformat;
         $question->graderinfo['itemid'] = $draftid;
         $question->codelanguage;
-
-//        $question->responsetemplate = array(
-//            'text' => $question->options->responsetemplate,
-//            'format' => $question->options->responsetemplateformat,
-//        );
 
         return $question;
     }

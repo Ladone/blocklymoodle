@@ -20,14 +20,15 @@
  * @package    qtype
  * @subpackage blocklymoodle
  * @copyright  2005 Mark Nielsen
+ * @copyright  2017 Pototskiy Vlad (pototskiyvl@gmail.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_blocklymoodle';
-$plugin->version   = 2017011807;
+$plugin->version   = 2017012100;
 
-$plugin->requires  = 2016112900;
+$plugin->requires  = 2016120500;
 
-$plugin->maturity  = MATURITY_ALPHA;
+$plugin->maturity  = MATURITY_STABLE;

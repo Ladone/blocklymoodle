@@ -20,6 +20,7 @@
  * @package    qtype
  * @subpackage blocklymoodle
  * @copyright  2009 The Open University
+ * @copyright  2017 Pototskiy Vlad (pototskiyvl@gmail.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -38,53 +39,17 @@ class qtype_blocklymoodle_renderer extends qtype_renderer {
             question_display_options $options) {
 
         $question = $qa->get_question();
-        global $DB;
 
         $questionanswer = $qa->get_response_summary(); // Get answer text
 
-//        $responseoutput = $question->get_format_renderer($this->page);
-//
-//        // Answer field.
-//          $step = $qa->get_last_step_with_qt_var('answer');
-//
-//        if (!$step->has_qt_var('answer') && empty($options->readonly)) {
-//            // Question has never been answered, fill it with response template.
-//            $step = new question_attempt_step(array('answer'=>$question->responsetemplate));
-//        }
-//
-      /*  if (empty($options->readonly)) {
-            $answer = $responseoutput->response_area_input('answer', $qa,
-                    $step, $question->responsefieldlines, $options->context);
-
-        } else {
-            $answer = $responseoutput->response_area_read_only('answer', $qa,
-                    $step, $question->responsefieldlines, $options->context);
-        }*/
-//
-//        $files = '';
-//        if ($question->attachments) {
-//            if (empty($options->readonly)) {
-//                $files = $this->files_input($qa, $question->attachments, $options);
-//
-//            } else {
-//                $files = $this->files_read_only($qa, $options);
-//            }
-//        }
-//
-
-        if(!$questionanswer){
+//        if(!$questionanswer){
+//        if($qa->get_current_manual_mark() == 0){
+        if(!strcasecmp($qa->get_state_class($qa->get_state()), "notyetanswered")){
             $result = '';
             $result .= html_writer::tag('div', $question->format_questiontext($qa),
                     array('class' => 'qtext'));
 
             $result .= html_writer::div('<object type="text/html" data="https://ladone.github.io/blocklycore/'. $question->codelanguage . '.html" style="height:500px; width: 100%;border: 1px solid #bbb;border-top: 2px solid #bbb;"></object>');
-    //        $result .= html_writer::start_tag('div', array('class' => 'ablock'));
-    //        $result .= html_writer::tag('div', $answer, array('class' => 'answer'));
-    //        $result .= html_writer::tag('div', $files, array('class' => 'attachments'));
-    //        $result .= html_writer::end_tag('div');
-    //        echo $question->codelanguage;
-
-
 
             $currentanswer = $qa->get_last_qt_var('answer');
 
@@ -99,23 +64,17 @@ class qtype_blocklymoodle_renderer extends qtype_renderer {
                 'class' => 'form-control',
             );
 
-            $questiontext = $question->format_questiontext($qa);
             $feedbackimg = '';
-            $placeholder = false;
+
             $input = html_writer::start_tag('textarea', $inputattributes) . $feedbackimg;
             $input .= html_writer::end_tag('textarea');
 
-    //        var_dump($qa);
-
-            // $result .= html_writer::tag('div', $questiontext, array('class' => 'qtext'));
-
-            if (!$placeholder) {
                 $result .= html_writer::start_tag('div', array('class' => 'ablock form-inline'));
+                $result .= html_writer::tag('div', get_string('attentioncopypaste', 'qtype_blocklymoodle'), array('style'=>'background: #99d5f3; padding: 10px; border-radius: 5px; margin-bottom: 5px;'));
                 $result .= html_writer::tag('label', get_string('answer', 'qtype_shortanswer',
                         html_writer::tag('span', $input, array('class' => 'answer'))),
                         array('for' => $inputattributes['id']));
                 $result .= html_writer::end_tag('div');
-            }
         }
         else
         {
@@ -125,24 +84,6 @@ class qtype_blocklymoodle_renderer extends qtype_renderer {
 
         return $result;
     }
-
-    /**
-     * Displays any attached files when the question is in read-only mode.
-     * @param question_attempt $qa the question attempt to display.
-     * @param question_display_options $options controls what should and should
-     *      not be displayed. Used to get the context.
-     */
-//    public function files_read_only(question_attempt $qa, question_display_options $options) {
-//        $files = $qa->get_last_qt_files('attachments', $options->context->id);
-//        $output = array();
-//
-//        foreach ($files as $file) {
-//            $output[] = html_writer::tag('p', html_writer::link($qa->get_response_file_url($file),
-//                    $this->output->pix_icon(file_file_icon($file), get_mimetype_description($file),
-//                    'moodle', array('class' => 'icon')) . ' ' . s($file->get_filename())));
-//        }
-//        return implode($output);
-//    }
 
     /**
      * Displays the input control for when the student should upload a single file.

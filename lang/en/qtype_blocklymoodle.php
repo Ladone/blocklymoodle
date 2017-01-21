@@ -20,6 +20,7 @@
  * @package    qtype
  * @subpackage blocklymoodle
  * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ * @copyright  2017 Pototskiy Vlad (pototskiyvl@gmail.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -54,3 +55,4 @@ $string['responsetemplate'] = 'Response template';
 $string['responsetemplateheader'] = 'Response Template';
 $string['responsetemplate_help'] = 'Use Blocklymoodle for creating code blocks, and testing it. If you program correctly, copy code and paste in special form.';
 $string['codelanguage'] = 'Code language:';
+$string['attentioncopypaste'] = 'Attention! Copy the ready code that you have created, and paste it into the box below.';
