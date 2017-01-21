@@ -5,9 +5,8 @@
 
 
 ---
-<h2>Install</h2>
+<h2>*Install*</h2>
 **Blocklymoodle** — have two installation methods:
-
  1.  Copy **Blocklymoodle** in dir `question/type/`.
  2.  Download **Blocklymoodle** how *zip* file from github and by installing plug-ins from **Moodle**.
 
