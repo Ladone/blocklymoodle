@@ -1,6 +1,6 @@
 **Blocklymoodle** ![moodlev.3.2](https://img.shields.io/badge/Moodle-v.3.2-f7942d.svg?style=flat-squared?logo=data:image/png;) ![license](https://img.shields.io/badge/License-GPLv3-70de75.svg?style=flat-squared?logo=data:image/png;) ![versionBlocklymoodle](https://img.shields.io/badge/Version-0.1%20stable-70c3de.svg?style=flat-squared?logo=data:image/png;)
 ===============
-**Blocklymoodle** this is plugin for **Moodle v3.2**.
+<p>**Blocklymoodle** this is plugin for **Moodle v3.2**.</p>
 **Blocklymoodle** — this integration in moodle, plugin [Blockly](https://developers.google.com/blockly/) create company **Google.**
 
 
