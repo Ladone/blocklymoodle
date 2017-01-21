@@ -5,7 +5,7 @@
 
 
 ---
-##*Install*##
+<h2>Install</h2>
 ####**Blocklymoodle**#### — have two installation methods:
 
  1.  Copy **Blocklymoodle** in dir `question/type/`.
