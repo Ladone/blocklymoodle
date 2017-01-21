@@ -38,6 +38,10 @@ class qtype_blocklymoodle_renderer extends qtype_renderer {
             question_display_options $options) {
 
         $question = $qa->get_question();
+        global $DB;
+
+        $questionanswer = $qa->get_response_summary(); // Get answer text
+
 //        $responseoutput = $question->get_format_renderer($this->page);
 //
 //        // Answer field.
@@ -67,34 +71,58 @@ class qtype_blocklymoodle_renderer extends qtype_renderer {
 //            }
 //        }
 //
-        $result = '';
-        $result .= html_writer::tag('div', $question->format_questiontext($qa),
-                array('class' => 'qtext'));
 
-        if($question->codelanguage == 'js'){
-            $result .= html_writer::div('<object type="text/html" data="https://ladone.github.io/blocklycore/js.html" style="height:500px; width: 100%;border: 1px solid #bbb;border-top: 2px solid #bbb;"></object>');
+        if(!$questionanswer){
+            $result = '';
+            $result .= html_writer::tag('div', $question->format_questiontext($qa),
+                    array('class' => 'qtext'));
+
+            $result .= html_writer::div('<object type="text/html" data="https://ladone.github.io/blocklycore/'. $question->codelanguage . '.html" style="height:500px; width: 100%;border: 1px solid #bbb;border-top: 2px solid #bbb;"></object>');
+    //        $result .= html_writer::start_tag('div', array('class' => 'ablock'));
+    //        $result .= html_writer::tag('div', $answer, array('class' => 'answer'));
+    //        $result .= html_writer::tag('div', $files, array('class' => 'attachments'));
+    //        $result .= html_writer::end_tag('div');
+    //        echo $question->codelanguage;
+
+
+
+            $currentanswer = $qa->get_last_qt_var('answer');
+
+            $inputname = $qa->get_qt_field_name('answer');
+            $inputattributes = array(
+                //'type' => 'text',
+                'name' => $inputname,
+                'value' => $currentanswer,
+                'id' => $inputname,
+                'cols' => 60,
+                'rows' => 7,
+                'class' => 'form-control',
+            );
+
+            $questiontext = $question->format_questiontext($qa);
+            $feedbackimg = '';
+            $placeholder = false;
+            $input = html_writer::start_tag('textarea', $inputattributes) . $feedbackimg;
+            $input .= html_writer::end_tag('textarea');
+
+    //        var_dump($qa);
+
+            // $result .= html_writer::tag('div', $questiontext, array('class' => 'qtext'));
+
+            if (!$placeholder) {
+                $result .= html_writer::start_tag('div', array('class' => 'ablock form-inline'));
+                $result .= html_writer::tag('label', get_string('answer', 'qtype_shortanswer',
+                        html_writer::tag('span', $input, array('class' => 'answer'))),
+                        array('for' => $inputattributes['id']));
+                $result .= html_writer::end_tag('div');
+            }
         }
-        else if($question->codelanguage == 'py'){
-            $result .= html_writer::div('<object type="text/html" data="https://ladone.github.io/blocklycore/py.html" style="height:500px; width: 100%;border: 1px solid #bbb;border-top: 2px solid #bbb;"></object>');
+        else
+        {
+            $result = html_writer::div($questionanswer);
         }
-        else if($question->codelanguage == 'php'){
-            $result .= html_writer::div('<object type="text/html" data="https://ladone.github.io/blocklycore/php.html" style="height:500px; width: 100%;border: 1px solid #bbb;border-top: 2px solid #bbb;"></object>');
-        }
-        else if($question->codelanguage == 'lua'){
-            $result .= html_writer::div('<object type="text/html" data="https://ladone.github.io/blocklycore/lua.html" style="height:500px; width: 100%;border: 1px solid #bbb;border-top: 2px solid #bbb;"></object>');
-        }
-        else if($question->codelanguage == 'dart'){
-            $result .= html_writer::div('<object type="text/html" data="https://ladone.github.io/blocklycore/dart.html" style="height:500px; width: 100%;border: 1px solid #bbb;border-top: 2px solid #bbb;"></object>');
-        }
-        else{
-            $result .= html_writer::div('<object type="text/html" data="https://ladone.github.io/blocklycore/xml.html" style="height:500px; width: 100%;border: 1px solid #bbb;border-top: 2px solid #bbb;"></object>');
-        }
-//
-        $result .= html_writer::start_tag('div', array('class' => 'ablock'));
-//        $result .= html_writer::tag('div', $answer, array('class' => 'answer'));
-//        $result .= html_writer::tag('div', $files, array('class' => 'attachments'));
-//        $result .= html_writer::end_tag('div');
-//        echo $question->codelanguage;
+
+
         return $result;
     }
 

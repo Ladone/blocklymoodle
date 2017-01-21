@@ -79,8 +79,8 @@ class qtype_blocklymoodle_question extends question_with_responses {
 
     public function summarise_response(array $response) {
         if (isset($response['answer'])) {
-            return question_utils::to_plain_text($response['answer'],
-                    $response['answerformat'], array('para' => false));
+            return question_utils::to_plain_text($response['answer'], //,$response['answerformat']
+            	array('para' => false));
         } else {
             return null;
         }
