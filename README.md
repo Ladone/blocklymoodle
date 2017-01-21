@@ -6,13 +6,13 @@
 
 ---
 <h2>Install</h2>
-####**Blocklymoodle**#### — have two installation methods:
+**Blocklymoodle** — have two installation methods:
 
  1.  Copy **Blocklymoodle** in dir `question/type/`.
  2.  Download **Blocklymoodle** how *zip* file from github and by installing plug-ins from **Moodle**.
 
 ---
-##*Use*##
+<h2>*Use*</h2>
 **Blocklymoodle** — Use it as a code generator, and then copy the generated code into the input field.
 
 
