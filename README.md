@@ -9,7 +9,7 @@
 <b>Blocklymoodle</b> — have two installation methods:
  <ol>
  <li>Copy <b>Blocklymoodle</b> in dir `question/type/`;</li>
- <li>Download <b>Blocklymoodle</b> how <i>zip<i> file from github and by installing plug-ins from <b>Moodle.</b></li>
+ <li>Download <b>Blocklymoodle</b> how <i>zip</i> file from github and by installing plug-ins from <b>Moodle.</b></li>
  </ol>
 
 ---
