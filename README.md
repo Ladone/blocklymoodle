@@ -3,8 +3,6 @@
 <b>Blocklymoodle</b> this is plugin for <b>Moodle v3.2.</b>
 <b>Blocklymoodle</b> — this integration in moodle, plugin [Blockly](https://developers.google.com/blockly/) create company <b>Google</b>
 
-
----
 <h2>Install</h2>
 <b>Blocklymoodle</b> — have two installation methods:
  <ol>
@@ -12,7 +10,6 @@
  <li>Download <b>Blocklymoodle</b> how <i>zip</i> file from github and by installing plug-ins from <b>Moodle.</b></li>
  </ol>
 
----
 <h2>Use</h2>
 <b>Blocklymoodle</b> — Use it as a code generator, and then copy the generated code into the input field.
 
