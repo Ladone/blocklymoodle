@@ -19,7 +19,6 @@
  *
  * @since      Moodle 2.0
  * @package    qtype_blocklymoodle
- * @copyright  Dongsheng Cai <dongsheng@moodle.com>
  * @copyright  2017 Pototskiy Vlad (pototskiyvl@gmail.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

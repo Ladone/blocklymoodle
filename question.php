@@ -19,7 +19,6 @@
  *
  * @package    qtype
  * @subpackage blocklymoodle
- * @copyright  2009 The Open University
  * @copyright  2017 Pototskiy Vlad (pototskiyvl@gmail.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

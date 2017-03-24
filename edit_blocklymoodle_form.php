@@ -19,7 +19,6 @@
  *
  * @package    qtype
  * @subpackage blocklymoodle
- * @copyright  2007 Jamie Pratt me@jamiep.org
  * @copyright  2017 Pototskiy Vlad (pototskiyvl@gmail.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
